@@ -20,7 +20,7 @@ export default class ProcessManager extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    this.setState({ sorting: remote.getCurrentWindow().defaultSorting });
+    this.setState({ sorting: ipcRenderer.sendSync('process-manager:defaultSorting') });
     ipcRenderer.on('process-manager:data', (_, data) => {
       this.setState({ processData: data });
     })

@@ -58,6 +58,13 @@ class ProcessManagerWindow extends BrowserWindow {
       this.emit('open-dev-tools', webContentsId);
 
     });
+    ipcMain.on('process-manager:defaultSorting', (e) => {
+      // ignore if not for us
+      if (!this || this.isDestroyed()) return;
+      if (e.sender !== this.webContents) return;
+      e.returnValue = this.defaultSorting;
+
+    });
     this.on('closed', () => {
       if (this.subscription) this.subscription.unsubscribe()
     });
