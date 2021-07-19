@@ -11,6 +11,7 @@ class ProcessManagerWindow extends BrowserWindow {
       useContentSize: true,
       webPreferences: {
         nodeIntegration: true,
+        contextIsolation: false,
         webviewTag: true,
       }
     }, options || {});
